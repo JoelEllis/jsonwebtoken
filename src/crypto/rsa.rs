@@ -2,7 +2,7 @@
 use crate::errors::{ErrorKind, Result};
 use crate::serialization::{b64_decode, b64_encode};
 use crate::{errors, Algorithm};
-use rsa::SignatureScheme;
+use rsa::traits::SignatureScheme;
 use rsa::{pss::Pss, Pkcs1v15Sign, RsaPrivateKey, RsaPublicKey};
 use sha2::{Digest, Sha256, Sha384, Sha512};
 
