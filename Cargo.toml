@@ -20,27 +20,26 @@ edition = "2021"
 serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
 
-base64 = "0.21.0"
+base64 = "0.22"
 
-rand_core = { version = "0.6", default-features = false }
-rand = { version = "0.8", default-features = false, features = ["std_rng", "std"] }
+rand = { version = "0.8", default-features = false, features = [
+  "std_rng",
+  "std",
+] }
 
-rsa = "0.8"
-sha2 = { version = "0.10.6", features = ["oid"] }
+rsa = "0.9"
+sha2 = { version = "0.10", features = ["oid"] }
 
-hmac = "0.12.1"
-subtle = "2.4.1"
-crypto-mac = "0.11.1"
-serde_plain = "1.0.1"
+hmac = "0.12"
+serde_plain = "1.0"
 
 [dev-dependencies]
 # For the custom chrono example
-chrono = "0.4.19"
-criterion = "0.3.5"
-reqwest = { version = "0.11.9", features = ["blocking", "json"] }
+chrono = "0.4.38"
+criterion = "0.5.1"
 
 # Test interop with the original.
-jsonwebtoken = "8.3.0"
+jsonwebtoken = "9.3.0"
 
 [[bench]]
 name = "jwt"

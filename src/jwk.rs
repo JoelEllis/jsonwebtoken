@@ -172,7 +172,7 @@ impl JwkDecodingKeySet {
                 alg == header_alg
             } else {
                 // If alg is not set, pass, otherwise fail.
-                !matches!(key.alg, Some(_))
+                key.alg.is_none()
             }
         })
         .find_map(|key| decode(token, &key.key, validation).ok())
