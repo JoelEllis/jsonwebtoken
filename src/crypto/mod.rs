@@ -126,23 +126,23 @@ pub fn verify(
             Algorithm::HS256 => {
                 let mut mac = HmacSha256::new_from_slice(s).unwrap();
                 mac.update(message.as_bytes());
-                Ok(mac.finalize().into_bytes().as_slice()
-                    == b64_decode(signature)
-                        .map_err(|_e| new_error(ErrorKind::InvalidSignature))?)
+                let decoded_sig = b64_decode(signature)
+                    .map_err(|_e| new_error(ErrorKind::InvalidSignature))?;
+                Ok(mac.verify_slice(&decoded_sig[..]).is_ok())
             }
             Algorithm::HS384 => {
                 let mut mac = HmacSha384::new_from_slice(s).unwrap();
                 mac.update(message.as_bytes());
-                Ok(mac.finalize().into_bytes().as_slice()
-                    == b64_decode(signature)
-                        .map_err(|_e| new_error(ErrorKind::InvalidSignature))?)
+                let decoded_sig = b64_decode(signature)
+                    .map_err(|_e| new_error(ErrorKind::InvalidSignature))?;
+                Ok(mac.verify_slice(&decoded_sig[..]).is_ok())
             }
             Algorithm::HS512 => {
                 let mut mac = HmacSha512::new_from_slice(s).unwrap();
                 mac.update(message.as_bytes());
-                Ok(mac.finalize().into_bytes().as_slice()
-                    == b64_decode(signature)
-                        .map_err(|_e| new_error(ErrorKind::InvalidSignature))?)
+                let decoded_sig = b64_decode(signature)
+                    .map_err(|_e| new_error(ErrorKind::InvalidSignature))?;
+                Ok(mac.verify_slice(&decoded_sig[..]).is_ok())
             }
             _ => Err(ErrorKind::InvalidAlgorithm.into()),
         },
